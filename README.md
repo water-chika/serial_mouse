@@ -18,6 +18,8 @@ arduino-cli upload --fqbn <board fqbn> --port <board port>
 
 ## Usage
 
+Connect A0,A1 with x and y axis, also connect 5V and GND pins.
+
 ```
 inputattach --sunmouse <board port>
 ```
