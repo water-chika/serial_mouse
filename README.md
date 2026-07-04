@@ -7,6 +7,15 @@ The project is a demo that emulate some input devices by Arduino.
 1. sunmouse
 2. stinger
 
+For stinger, inputattach source need to modified to increase to wait more time to read.
+```
+readchar(fd, &c, 200)
+```
+to
+```
+readchar(fd, &c, 900)
+```
+
 ## Build & Program
 
 Use below command to get board fqbn and port.
