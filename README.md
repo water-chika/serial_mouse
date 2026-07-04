@@ -1,7 +1,11 @@
 # Arduino Serial Mouse
 
-The project is a demo that emulate a serial mouse by Arduino.
+The project is a demo that emulate some input devices by Arduino.
 
+## Emulated Devices
+
+1. sunmouse
+2. stinger
 
 ## Build & Program
 
@@ -22,6 +26,12 @@ Connect A0,A1 with x and y axis, also connect 5V and GND pins.
 
 ```
 inputattach --sunmouse <board port>
+```
+
+or if stinger device is emulated:
+
+```
+inputattach --stinger <board port>
 ```
 
 ## Reference
