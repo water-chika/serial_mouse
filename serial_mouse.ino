@@ -23,7 +23,7 @@ void setup() {
     }
   }
   else if (device == print_value) {
-    Serial.begin(1200);
+    Serial.begin(9600);
   }
   while (!Serial);
 }
@@ -31,21 +31,22 @@ void setup() {
 int previous_x, previous_y, previous_z;
 
 void loop() {
-  int x = analogRead(A0); // x-axis
-  int y = analogRead(A1); // y-axis
-  int z = analogRead(A2); // z-axis
+  int x = (analogRead(A0)-512); // x-axis
+  int y = (analogRead(A1)-512); // y-axis
+  int z = analogRead(A2)>0?1:0; // z-axis
   
+  y = abs(y) > 30 ? y : 0;
   if (device == sunmouse) {
     Serial.write(0x87);
-    Serial.write((x-512)*128/512/10); // x-axis
-    Serial.write(-(y-512)*128/512/10); // y-axis
-    Serial.write((x-512)*128/512/10); // x-axis
-    Serial.write(-(y-512)*128/512/10); // y-axis
+    Serial.write((x)*128/512/10); // x-axis
+    Serial.write(-(y)*128/512/10); // y-axis
+    Serial.write((x)*128/512/10); // x-axis
+    Serial.write(-(y)*128/512/10); // y-axis
   }
   else if (device == stinger){
     if (previous_x != x || previous_y != y) {
-      int x_abs = (x-512)/(512/64);
-      int y_abs = ((y-512)/(512/64));
+      int x_abs = (x)/(512/64);
+      int y_abs = ((y)/(512/64));
       Serial.write(((y_abs>>5)&0x02) | ((x_abs>>31)&0x01)); // packet - 0
       Serial.write(x_abs&0x3f);
       Serial.write(y_abs&0x3f);
@@ -57,9 +58,9 @@ void loop() {
   }
   else {
     Serial.print(" x ");
-    Serial.print(x-511);
+    Serial.print(x);
     Serial.print(" y ");
-    Serial.print(y-511);
+    Serial.print(y);
     Serial.print(" z ");
     Serial.print(z>0?1:0);
     Serial.println("");
