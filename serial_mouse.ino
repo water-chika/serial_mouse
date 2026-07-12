@@ -1,9 +1,10 @@
 enum device {
   sunmouse,
-  stinger
+  stinger,
+  print_value,
 };
 
-device device = stinger;
+device device = print_value;
 
 bool enabled = false;
 
@@ -20,6 +21,9 @@ void setup() {
     if (memcmp(buf, " E5E5", 5) == 0) {
       enabled = true;
     }
+  }
+  else if (device == print_value) {
+    Serial.begin(9600);
   }
   while (!Serial);
 }
@@ -52,7 +56,12 @@ void loop() {
     }
   }
   else {
-    Serial.print(x); Serial.print(" "); Serial.println(y);
+    Serial.print("x ");
+    Serial.print(x);
+    Serial.print("y ");
+    Serial.print(y);
+    Serial.print("z ");
+    Serial.println(z);
   }
   delay(100);
 }
