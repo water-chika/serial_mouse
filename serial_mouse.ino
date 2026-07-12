@@ -23,7 +23,7 @@ void setup() {
     }
   }
   else if (device == print_value) {
-    Serial.begin(9600);
+    Serial.begin(1200);
   }
   while (!Serial);
 }
@@ -56,12 +56,13 @@ void loop() {
     }
   }
   else {
-    Serial.print("x ");
-    Serial.print(x);
-    Serial.print("y ");
-    Serial.print(y);
-    Serial.print("z ");
-    Serial.println(z);
+    Serial.print(" x ");
+    Serial.print(x-511);
+    Serial.print(" y ");
+    Serial.print(y-511);
+    Serial.print(" z ");
+    Serial.print(z>0?1:0);
+    Serial.println("");
   }
   delay(100);
 }
