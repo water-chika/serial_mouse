@@ -57,13 +57,20 @@ void loop() {
     }
   }
   else {
-    Serial.print(" x ");
-    Serial.print(x);
-    Serial.print(" y ");
-    Serial.print(y);
-    Serial.print(" z ");
-    Serial.print(z>0?1:0);
-    Serial.println("");
+    if (abs(x-previous_x) > 25) {
+      Serial.print(" x ");
+      Serial.println(x);
+      previous_x = x;
+    }
+    if (abs(y-previous_y) > 25) {
+      Serial.print(" y ");
+      Serial.println(y);
+      previous_y = y;
+    }
+    if (abs(z-previous_z) > 0) {
+      Serial.print(" z ");
+      Serial.println(z>0?1:0);
+      previous_z = z;
+    }
   }
-  delay(100);
 }
