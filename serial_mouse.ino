@@ -67,7 +67,7 @@ void loop() {
       Serial.println(y);
       previous_y = y;
     }
-    if (abs(z-previous_z) > 0) {
+    if (abs(z-previous_z) > 0 && abs(y) < 25 && abs(x) < 25) {
       Serial.print(" z ");
       Serial.println(z>0?1:0);
       previous_z = z;
